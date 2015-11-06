@@ -141,6 +141,12 @@
 
     <td valign="top">
       Game Info
+      <table>
+        <tr ng-repeat="(key, value) in game.boards">
+          <td>Turn {{key}} | Source : {{value.source}} | Desc : {{value.destination}}</td>
+        </tr>
+      </table>
+
     </td>
 
   </tr>
