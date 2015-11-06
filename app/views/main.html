@@ -144,7 +144,7 @@
       Game Info
       <table>
         <tr ng-repeat="(key, value) in game.boards">
-          <td>Turn {{key}} | Source : {{value.source}} | Desc : {{value.destination}}</td>
+          <td>Turn {{key}} | Piece : {{value.position[value.destination].type}} {{value.position[value.destination].color}} | Source : {{value.source}} | Desc : {{value.destination}}</td>
         </tr>
       </table>
 
