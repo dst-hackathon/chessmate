@@ -1,0 +1,13 @@
+{
+  "board": [
+    {
+      "A1": {
+        "type": "King",
+        "color": "black"
+      },
+      "A2": {},
+      "source": "A3",
+      "destination": "A4",
+    }
+  ]
+}
