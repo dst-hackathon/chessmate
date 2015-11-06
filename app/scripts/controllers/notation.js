@@ -8,13 +8,16 @@
  * Controller of the chessmateApp
  */
 angular.module('chessmateApp')
-  .controller('NotationCtrl', function ($scope) {
+  .controller('NotationCtrl', function ($scope,$rootScope) {
     $scope.buildGame = function(notation) {
+
       var game = {
         "boards": [$scope.buildInitialBoard()]
       };
 
-      return game;
+      $scope.generateBoardFromNotation(game.boards, notation);
+
+      $rootScope.game = game;
     };
 
     $scope.buildInitialBoard = function() {
@@ -61,7 +64,42 @@ angular.module('chessmateApp')
       return board;
     }
 
-    $scope.buildBoard = function(currentBoard, move) {
+      $scope.generateBoardFromNotation = function(boardsArray,notation){
+
+        //extract header and moves out of notation string
+        var header = $scope.getHeader(notation);
+        //do something with header
+
+        var moves = $scope.getMoves(notation);
+
+        //while still have moves
+        var dotPos;
+
+        while( (dotPos = moves.indexOf(".")) != -1){
+          //find first 6 and send with white colour
+          var whiteMove = moves.substring(dotPos+1,dotPos+7);
+          boardsArray.push($scope.buildBoard, whiteMove, 'white');
+          //find last 6 and send with black colour
+          var blackMove = moves.substring(dotPos+8,dotPos+14);
+          boardsArray.push($scope.buildBoard, whiteMove, 'white');
+
+          moves = moves.substring(dotPos+14);
+        }
+
+
+      };
+
+      $scope.getHeader = function(notation){
+
+      };
+
+      $scope.getMoves = function(notation){
+        var lastIndexOfBracket = notation.lastIndexOf("]");
+        return  notation.substring(lastIndexOfBracket+1);
+      };
+
+
+      $scope.buildBoard = function(currentBoard, move, colour) {
       var board = currentBoard;
 
       return board;
