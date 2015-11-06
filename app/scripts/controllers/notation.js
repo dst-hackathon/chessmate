@@ -67,6 +67,10 @@ angular.module('chessmateApp')
         previous : function (game) {
           var nextBoardIndex = this.turn - 1;
           return game.boards[nextBoardIndex];
+        },
+        switch : function (game) {
+          var nextBoardIndex = this.turn;
+          return game.boards[nextBoardIndex];
         }
       };
 
