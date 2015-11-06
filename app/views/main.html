@@ -1,5 +1,5 @@
-{{currentBoard}}
-
+<input type="button" value="Back" ng-click="back()" />
+<input type="button" value="Next" ng-click="next()" />
 <table border="0">
   <tr>
     <td>
@@ -20,84 +20,84 @@
 
         <table id="chess_board" cellpadding="0" cellspacing="0">
           <tr>
-            <td><div  ng-bind-html="currentBoard.position.A8.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.B8.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.C8.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.D8.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.E8.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.F8.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.G8.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.H8.value"></div></td>
+            <td id="A8"><div  ng-bind-html="currentBoard.position.A8.value"></div></td>
+            <td id="B8"><div  ng-bind-html="currentBoard.position.B8.value"></div></td>
+            <td id="C8"><div  ng-bind-html="currentBoard.position.C8.value"></div></td>
+            <td id="D8"><div  ng-bind-html="currentBoard.position.D8.value"></div></td>
+            <td id="E8"><div  ng-bind-html="currentBoard.position.E8.value"></div></td>
+            <td id="F8"><div  ng-bind-html="currentBoard.position.F8.value"></div></td>
+            <td id="G8"><div  ng-bind-html="currentBoard.position.G8.value"></div></td>
+            <td id="H8"><div  ng-bind-html="currentBoard.position.H8.value"></div></td>
           </tr>
           <tr>
-            <td><div  ng-bind-html="currentBoard.position.A7.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.B7.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.C7.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.D7.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.E7.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.F7.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.G7.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.H7.value"></div></td>
+            <td id="A7"><div  ng-bind-html="currentBoard.position.A7.value"></div></td>
+            <td id="B7"><div  ng-bind-html="currentBoard.position.B7.value"></div></td>
+            <td id="C7"><div  ng-bind-html="currentBoard.position.C7.value"></div></td>
+            <td id="D7"><div  ng-bind-html="currentBoard.position.D7.value"></div></td>
+            <td id="E7"><div  ng-bind-html="currentBoard.position.E7.value"></div></td>
+            <td id="F7"><div  ng-bind-html="currentBoard.position.F7.value"></div></td>
+            <td id="G7"><div  ng-bind-html="currentBoard.position.G7.value"></div></td>
+            <td id="H7"><div  ng-bind-html="currentBoard.position.H7.value"></div></td>
           </tr>
           <tr>
-            <td><div  ng-bind-html="currentBoard.position.A6.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.B6.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.C6.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.D6.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.E6.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.F6.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.G6.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.H6.value"></div></td>
+            <td id="A6"><div  ng-bind-html="currentBoard.position.A6.value"></div></td>
+            <td id="B6"><div  ng-bind-html="currentBoard.position.B6.value"></div></td>
+            <td id="C6"><div  ng-bind-html="currentBoard.position.C6.value"></div></td>
+            <td id="D6"><div  ng-bind-html="currentBoard.position.D6.value"></div></td>
+            <td id="E6"><div  ng-bind-html="currentBoard.position.E6.value"></div></td>
+            <td id="F6"><div  ng-bind-html="currentBoard.position.F6.value"></div></td>
+            <td id="G6"><div  ng-bind-html="currentBoard.position.G6.value"></div></td>
+            <td id="H6"><div  ng-bind-html="currentBoard.position.H6.value"></div></td>
           </tr>
           <tr>
-            <td><div  ng-bind-html="currentBoard.position.A5.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.B5.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.C5.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.D5.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.E5.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.F5.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.G5.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.H5.value"></div></td>
+            <td id="A5"><div  ng-bind-html="currentBoard.position.A5.value"></div></td>
+            <td id="B5"><div  ng-bind-html="currentBoard.position.B5.value"></div></td>
+            <td id="C5"><div  ng-bind-html="currentBoard.position.C5.value"></div></td>
+            <td id="D5"><div  ng-bind-html="currentBoard.position.D5.value"></div></td>
+            <td id="E5"><div  ng-bind-html="currentBoard.position.E5.value"></div></td>
+            <td id="F5"><div  ng-bind-html="currentBoard.position.F5.value"></div></td>
+            <td id="G5"><div  ng-bind-html="currentBoard.position.G5.value"></div></td>
+            <td id="H5"><div  ng-bind-html="currentBoard.position.H5.value"></div></td>
           </tr>
           <tr>
-            <td><div  ng-bind-html="currentBoard.position.A4.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.B4.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.C4.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.D4.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.E4.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.F4.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.G4.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.H4.value"></div></td>
+            <td id="A4"><div  ng-bind-html="currentBoard.position.A4.value"></div></td>
+            <td id="B4"><div  ng-bind-html="currentBoard.position.B4.value"></div></td>
+            <td id="C4"><div  ng-bind-html="currentBoard.position.C4.value"></div></td>
+            <td id="D4"><div  ng-bind-html="currentBoard.position.D4.value"></div></td>
+            <td id="E4"><div  ng-bind-html="currentBoard.position.E4.value"></div></td>
+            <td id="F4"><div  ng-bind-html="currentBoard.position.F4.value"></div></td>
+            <td id="G4"><div  ng-bind-html="currentBoard.position.G4.value"></div></td>
+            <td id="H4"><div  ng-bind-html="currentBoard.position.H4.value"></div></td>
           </tr>
           <tr>
-            <td><div  ng-bind-html="currentBoard.position.A3.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.B3.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.C3.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.D3.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.E3.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.F3.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.G3.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.H3.value"></div></td>
+            <td id="A3"><div  ng-bind-html="currentBoard.position.A3.value"></div></td>
+            <td id="B3"><div  ng-bind-html="currentBoard.position.B3.value"></div></td>
+            <td id="C3"><div  ng-bind-html="currentBoard.position.C3.value"></div></td>
+            <td id="D3"><div  ng-bind-html="currentBoard.position.D3.value"></div></td>
+            <td id="E3"><div  ng-bind-html="currentBoard.position.E3.value"></div></td>
+            <td id="F3"><div  ng-bind-html="currentBoard.position.F3.value"></div></td>
+            <td id="G3"><div  ng-bind-html="currentBoard.position.G3.value"></div></td>
+            <td id="H3"><div  ng-bind-html="currentBoard.position.H3.value"></div></td>
           </tr>
           <tr>
-            <td><div  ng-bind-html="currentBoard.position.A2.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.B2.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.C2.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.D2.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.E2.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.F2.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.G2.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.H2.value"></div></td>
+            <td id="A2"><div  ng-bind-html="currentBoard.position.A2.value"></div></td>
+            <td id="B2"><div  ng-bind-html="currentBoard.position.B2.value"></div></td>
+            <td id="C2"><div  ng-bind-html="currentBoard.position.C2.value"></div></td>
+            <td id="D2"><div  ng-bind-html="currentBoard.position.D2.value"></div></td>
+            <td id="E2"><div  ng-bind-html="currentBoard.position.E2.value"></div></td>
+            <td id="F2"><div  ng-bind-html="currentBoard.position.F2.value"></div></td>
+            <td id="G2"><div  ng-bind-html="currentBoard.position.G2.value"></div></td>
+            <td id="H2"><div  ng-bind-html="currentBoard.position.H2.value"></div></td>
           </tr>
           <tr>
-            <td><div  ng-bind-html="currentBoard.position.A1.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.B1.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.C1.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.D1.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.E1.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.F1.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.G1.value"></div></td>
-            <td><div  ng-bind-html="currentBoard.position.H1.value"></div></td>
+            <td id="A1"><div  ng-bind-html="currentBoard.position.A1.value"></div></td>
+            <td id="B1"><div  ng-bind-html="currentBoard.position.B1.value"></div></td>
+            <td id="C1"><div  ng-bind-html="currentBoard.position.C1.value"></div></td>
+            <td id="D1"><div  ng-bind-html="currentBoard.position.D1.value"></div></td>
+            <td id="E1"><div  ng-bind-html="currentBoard.position.E1.value"></div></td>
+            <td id="F1"><div  ng-bind-html="currentBoard.position.F1.value"></div></td>
+            <td id="G1"><div  ng-bind-html="currentBoard.position.G1.value"></div></td>
+            <td id="H1"><div  ng-bind-html="currentBoard.position.H1.value"></div></td>
           </tr>
 
         </table>
@@ -142,7 +142,15 @@
 
     <td valign="top">
       Game Info
+      <table>
+        <tr ng-repeat="(key, value) in game.boards">
+          <td>Turn {{key}} | Piece : {{value.position[value.destination].type}} {{value.position[value.destination].color}} | Source : {{value.source}} | Desc : {{value.destination}}</td>
+        </tr>
+      </table>
+
     </td>
 
   </tr>
 </table>
+
+{{game}}
