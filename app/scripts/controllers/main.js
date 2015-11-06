@@ -9,25 +9,22 @@
  */
 angular.module('chessmateApp')
   .controller('MainCtrl', function ($scope) {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
 
-    $scope.board = new Board();
+    $scope.currentBoard = mockBoard();
 
-    function Board (){
+    function mockBoard(){
       return {
-        'a1':'',
-        'a2':'',
-        'a3':'',
-        'a4':'',
-        'a5':'',
-        'a6':'',
-        'a7':'',
-        'a8':''
-      }
+        "turn" : 0,
+        "position" : {
+          "A8": {
+            "type": "king",
+            "value" : "&#9820;",
+            "color": "white"
+          },
+          "A2": {}
+        },
+        "source": "A3",
+        "destination": "A4"
+      };
     }
-
   });
