@@ -141,15 +141,15 @@ angular.module('chessmateApp')
         "rook-black": "&#9820;",
         "knight-black": "&#9822;",
         "bishop-black": "&#9821;",
-        "king-black": "&#9819;",
-        "queen-black": "&#9818;",
+        "king-black": "&#9818;",
+        "queen-black": "&#9819;",
         "pawn-black": "&#9823;",
 
         "rook-white": "&#9814;",
         "knight-white": "&#9816;",
         "bishop-white": "&#9815;",
-        "king-white": "&#9813;",
-        "queen-white": "&#9812;",
+        "king-white": "&#9812;",
+        "queen-white": "&#9813;",
         "pawn-white": "&#9817;"
       });
       var key = piece.type + "-" + piece.color;
