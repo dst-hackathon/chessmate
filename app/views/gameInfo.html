@@ -1,1 +1,22 @@
-game info
+<div float="right">
+    <h3>Game Info: </h3>
+    <div id="table-scroll">
+        <table  style="float:right;" class="table table-hover table-bordered table-striped">
+            <thead>
+            <tr>
+                <th sortable-header>Turn</th>
+                <th sortable-header>Piece</th>
+                <th sortable-header>Source</th>
+                <th sortable-header>Description</th>
+            </tr>
+            </thead>
+            <tr class='active' ng-repeat="(key, value) in game.boards">
+                <td> {{key}}   </td>
+                <td> {{value.position[value.destination].type}} </td>
+                <td> {{value.position[value.destination].color}}</td>
+                <td> {{value.destination}}</td>
+            </tr>
+        </table>
+    </div>
+    </td>
+</div>
