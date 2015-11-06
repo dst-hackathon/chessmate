@@ -3,6 +3,6 @@ angular.module('chessmateApp')
     return {
         restrict: 'E', //E = element, A = attribute, C = class, M = comment
         templateUrl: 'app/views/notation-section.html',
-        controller: 'NotationController' //Embed a custom controller in the directive
+        controller: 'NotationCtrl' //Embed a custom controller in the directive
     };
 });
