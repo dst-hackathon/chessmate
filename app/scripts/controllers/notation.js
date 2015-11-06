@@ -100,7 +100,7 @@ angular.module('chessmateApp')
     };
     $scope.buildBoard = function (currentBoard, move, color) {
       var board = angular.copy(currentBoard);
-      var char = (move.indexOf("=") == -1) ? move.substring(0, 1) : "M";
+      var char = (move.indexOf("=") == -1) ? move.substring(0, 1) : "A";
       var source = move.substring(1, 3);
       var destination = move.substring(4, 6);
 
@@ -139,6 +139,8 @@ angular.module('chessmateApp')
       } else if (char == 'K') {
         type = "king";
       } else if (char == 'M') {
+        type = "queen";
+      } else if (char == 'A') {
         type = "queen";
       }
 
