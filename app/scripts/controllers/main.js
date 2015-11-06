@@ -15,22 +15,6 @@ angular.module('chessmateApp')
       $scope.currentBoard = game.boards[0];
     });
 
-    function mockBoard(){
-      return {
-        "turn" : 0,
-        "position" : {
-          "A8": {
-            "type": "king",
-            "value" : "&#9820;",
-            "color": "white"
-          },
-          "A2": {}
-        },
-        "source": "A3",
-        "destination": "A4"
-      };
-    }
-
     $scope.move = function(source, destination) {
       var piece = $("#" + source).children();
       var desinationPosition = $("#" + destination).position();
