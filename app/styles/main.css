@@ -143,3 +143,8 @@ body {
   overflow:auto;
   margin-top:20px;
 }
+
+tr.pointer
+{
+  cursor: pointer
+}

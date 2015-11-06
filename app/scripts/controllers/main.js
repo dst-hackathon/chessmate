@@ -45,6 +45,10 @@ angular.module('chessmateApp')
       $rootScope.$broadcast('back', null);
     };
 
+    $scope.changeBoard = function(board){
+      renderBoard(board);
+    };
+
     function move(currentBoard, isMoveForward) {
       var source = isMoveForward ? currentBoard.source : currentBoard.destination;
       var destination = isMoveForward ? currentBoard.destination : currentBoard.source;

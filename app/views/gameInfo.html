@@ -10,7 +10,9 @@
                 <th sortable-header>Description</th>
             </tr>
             </thead>
-            <tr class='active' ng-repeat="(key, value) in game.boards">
+            <tr ng-class="{info:currentBoard.turn==value.turn}"
+                class="pointer"
+                ng-repeat="(key, value) in game.boards" ng-click="changeBoard(value)">
                 <td> {{key}}   </td>
                 <td> {{value.position[value.destination].type}} </td>
                 <td> {{value.position[value.destination].color}}</td>
