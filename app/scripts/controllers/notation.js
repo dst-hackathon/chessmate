@@ -67,7 +67,7 @@ angular.module('chessmateApp')
         $scope.generateBoardFromNotation = function (boardsArray, notation) {
 
             //extract header and moves out of notation string
-            var header = $scope.getHeader(notation);
+            var header = notation.substring(0,notation.lastIndexOf("]"));
             //do something with header
 
             var moves = $scope.getMoves(notation);
@@ -84,10 +84,6 @@ angular.module('chessmateApp')
 
                 moves = moves.substring(dotPos + 14);
             }
-        };
-
-        $scope.getHeader = function (notation) {
-
         };
 
         $scope.getMoves = function (notation) {
