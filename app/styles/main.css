@@ -123,3 +123,12 @@ body {
 {
   border: 15px solid white;text-align: center;vertical-align: middle;
 }
+
+
+#table-scroll {
+  position:relative;
+  height:auto;
+  max-height: 650px;
+  overflow:auto;
+  margin-top:20px;
+}
