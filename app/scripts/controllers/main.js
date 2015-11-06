@@ -28,6 +28,14 @@ angular.module('chessmateApp')
       move(currentBoard, false);
     });
 
+    $('.piece').on("webkitTransitionEnd otransitionEnd oTransitionEnd msTransitionEnd transitionEnd",
+      function(event) {
+        piece.removeAttr("style");
+        $("#" + destination).html(piece);
+        $scope.currentBoard = currentBoard;
+        $rootScope.$broadcast('next', null);
+    });
+
     $scope.next = function(){
       $rootScope.$broadcast('next', null);
     };
@@ -44,16 +52,6 @@ angular.module('chessmateApp')
       var sourcePosition = $("#" + source).position();
       var destinationClass = buildCss(desinationPosition.left - sourcePosition.left, desinationPosition.top - sourcePosition.top);
       piece.css(destinationClass);
-
-      // TODO fire this event when move complete
-      $(piece).on("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend",
-        function(event) {
-          piece.removeAttr("style");
-          $("#" + destination).html(piece);
-          $scope.currentBoard = currentBoard;
-          //$(piece).off();
-          $rootScope.$broadcast('next', null);
-        });
     };
 
     function buildCss(positionX, positionY) {
