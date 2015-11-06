@@ -76,13 +76,15 @@ angular.module('chessmateApp')
       var dotPos;
       while ((dotPos = moves.indexOf(".")) != -1) {
         //find first 6 and send with white colour
-        var whiteMove = moves.substring(dotPos + 1, dotPos + 7);
+        var whiteMove = moves.substring(dotPos + 1, moves.indexOf(' '));
         boardsArray.push($scope.buildBoard(boardsArray[boardsArray.length - 1], whiteMove, 'white'));
         //find last 6 and send with black colour
-        var blackMove = moves.substring(dotPos + 8, dotPos + 14);
+          var indexOfFirstBlack = dotPos+1+whiteMove.length+1;
+          var indexOfSecondSpace = moves.indexOf(' ', indexOfFirstBlack);
+        var blackMove = moves.substring(indexOfFirstBlack ,indexOfSecondSpace);
         boardsArray.push($scope.buildBoard(boardsArray[boardsArray.length - 1], blackMove, 'black'));
 
-        moves = moves.substring(dotPos + 14);
+        moves = moves.substring(moves.indexOf(blackMove)+blackMove.length+1);
       }
     };
 
