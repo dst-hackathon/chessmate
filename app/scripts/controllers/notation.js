@@ -23,6 +23,7 @@ angular.module('chessmateApp')
     $scope.buildInitialBoard = function () {
       var board = {
         "turn": 0,
+        "move": undefined,
         "source": undefined,
         "destination": undefined,
         "position": {
@@ -104,6 +105,7 @@ angular.module('chessmateApp')
       var destination = move.substring(4, 6);
 
       board.turn = currentBoard.turn + 1;
+      board.move = move;
       board.source = source;
       board.destination = destination;
       board.position[destination] = $scope.buildPiece(char, color);
