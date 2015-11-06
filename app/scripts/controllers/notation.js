@@ -59,6 +59,14 @@ angular.module('chessmateApp')
           "F8": $scope.buildPiece('C', "black"),
           "G8": $scope.buildPiece('N', "black"),
           "H8": $scope.buildPiece('R', "black")
+        },
+        next : function (game) {
+          var nextBoardIndex = this.turn + 1;
+          return game.boards[nextBoardIndex];
+        },
+        previous : function (game) {
+          var nextBoardIndex = this.turn - 1;
+          return game.boards[nextBoardIndex];
         }
       };
 

@@ -19,24 +19,23 @@ angular.module('chessmateApp')
     });
 
     $scope.$on('animation-completed', function (event,isMoveForward) {
-      var nextBoardIndex = $scope.currentBoard.turn + 1;
-      if(!isMoveForward){
-        nextBoardIndex = $scope.currentBoard.turn - 1;
+      var nextBoard = null;
+      if(isMoveForward){
+        nextBoard = $scope.currentBoard.next($scope.game);
+      }else{
+        nextBoard = $scope.currentBoard.previous($scope.game);
       }
 
-      var nextBoard = $scope.game.boards[nextBoardIndex];
       renderBoard(nextBoard);
     });
 
     $scope.$on('next', function (event) {
-      var nextBoardIndex = $scope.currentBoard.turn + 1;
-      var nextBoard = $scope.game.boards[nextBoardIndex];
+      var nextBoard = $scope.currentBoard.next($scope.game);
       move(nextBoard, true);
     });
     $scope.$on('back', function (event) {
-      var nextBoard = $scope.currentBoard.turn - 1;
-      var currentBoard = $scope.game.boards[nextBoard];
-      move(currentBoard, false);
+      var nextBoard = $scope.currentBoard.previous($scope.game);
+      move(nextBoard, false);
     });
 
     $scope.next = function(){
