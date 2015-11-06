@@ -30,4 +30,21 @@ angular.module('chessmateApp')
         "destination": "A4"
       };
     }
+
+    $scope.move = function(source, destination) {
+      var piece = $("#" + source).children();
+      var desinationPosition = $("#" + destination).position();
+      var destinationClass = buildCss(desinationPosition.left, desinationPosition.top);
+      piece.css(destinationClass);
+    }
+
+    function buildCss(positionX, positionY) {
+      var transform = "translate(" + positionX + "px, " + positionY + "px)";
+      var cssStyle = { "-webkit-transform": transform,
+        "-moz-transform": transform,
+        "-o-transform": transform,
+        "-ms-transform": transform,
+        "transform": transform};
+      return cssStyle;
+    }
   });
