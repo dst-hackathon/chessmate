@@ -14,26 +14,29 @@ angular.module('chessmateApp')
     $scope.$on('game-updated', function (event, game) {
       console.log(game);
       $scope.game = game;
-      $scope.currentBoard = game.boards[0];
+
+      renderBoard($scope.game.boards[0]);
+    });
+
+    $scope.$on('animation-completed', function (event,isMoveForward) {
+      var nextBoardIndex = $scope.currentBoard.turn + 1;
+      if(!isMoveForward){
+        nextBoardIndex = $scope.currentBoard.turn - 1;
+      }
+
+      var nextBoard = $scope.game.boards[nextBoardIndex];
+      renderBoard(nextBoard);
     });
 
     $scope.$on('next', function (event) {
-      var nextBoard = $scope.currentBoard.turn + 1;
-      var currentBoard = $scope.game.boards[nextBoard];
-      move(currentBoard, true);
+      var nextBoardIndex = $scope.currentBoard.turn + 1;
+      var nextBoard = $scope.game.boards[nextBoardIndex];
+      move(nextBoard, true);
     });
     $scope.$on('back', function (event) {
       var nextBoard = $scope.currentBoard.turn - 1;
       var currentBoard = $scope.game.boards[nextBoard];
       move(currentBoard, false);
-    });
-
-    $('.piece').on("webkitTransitionEnd otransitionEnd oTransitionEnd msTransitionEnd transitionEnd",
-      function(event) {
-        piece.removeAttr("style");
-        $("#" + destination).html(piece);
-        $scope.currentBoard = currentBoard;
-        $rootScope.$broadcast('next', null);
     });
 
     $scope.next = function(){
@@ -53,9 +56,12 @@ angular.module('chessmateApp')
       var destinationClass = buildCss(desinationPosition.left - sourcePosition.left, desinationPosition.top - sourcePosition.top);
       piece.css(destinationClass);
 
-      $("#chess_board td").removeClass('highlight');
-      $("#" + destination).addClass('highlight');
-      $("#" + source).addClass('highlight');
+      $(piece).on("webkitTransitionEnd otransitionEnd oTransitionEnd msTransitionEnd transitionEnd",function(event) {
+        $rootScope.$broadcast('animation-completed', isMoveForward);
+      });
+      //$("#chess_board td").removeClass('highlight');
+      //$("#" + destination).addClass('highlight');
+      //$("#" + source).addClass('highlight');
     };
 
     function buildCss(positionX, positionY) {
@@ -66,5 +72,22 @@ angular.module('chessmateApp')
         "-ms-transform": transform,
         "transform": transform};
       return cssStyle;
+    }
+
+    function renderBoard(board) {
+      // unbind all rows
+      $scope.game.rows = [];
+      forceScreenRender();
+
+      // rebind all rows
+      $scope.currentBoard = board;
+      $scope.game.rows = [8, 7, 6, 5, 4, 3, 2, 1];
+      forceScreenRender();
+    }
+
+    function forceScreenRender(){
+      if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') {
+        $scope.$apply();
+      }
     }
   });
