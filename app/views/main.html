@@ -1,8 +1,7 @@
-<input type="button" value="Back" ng-click="back()"/>
-<input type="button" value="Next" ng-click="next()"/>
 <div class="row">
   <div class="col-md-9">
-    <div ng-include="'app/views/board.html'"></div>
+    <div ng-show="game!=null" ng-include="'app/views/board.html'"></div>
+    <notation-section/>
   </div>
   <div class="col-md-3">
     <div ng-include="'app/views/gameinfo.html'"></div>
