@@ -52,6 +52,10 @@ angular.module('chessmateApp')
       var sourcePosition = $("#" + source).position();
       var destinationClass = buildCss(desinationPosition.left - sourcePosition.left, desinationPosition.top - sourcePosition.top);
       piece.css(destinationClass);
+
+      $("#chess_board td").removeClass('highlight');
+      $("#" + destination).addClass('highlight');
+      $("#" + source).addClass('highlight');
     };
 
     function buildCss(positionX, positionY) {

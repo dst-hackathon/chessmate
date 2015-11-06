@@ -109,6 +109,17 @@ body {
 	vertical-align:middle;
 	width:80px;
 }
+
+
+#chess_board tr td.highlight {
+  background:#963;
+  background:-moz-linear-gradient(top, #963, #eee) !important;
+  background:-webkit-gradient(linear,0 0, 0 100%, from(#963), to(#eee)) !important;
+  box-shadow:inset 0 0 10px rgba(0,0,0,.4);
+  -moz-box-shadow:inset 0 0 10px rgba(0,0,0,.4);
+  -webkit-box-shadow:inset 0 0 10px rgba(0,0,0,.4);
+}
+
 #chess_board tr:nth-child(odd) td:nth-child(even),
 #chess_board tr:nth-child(even) td:nth-child(odd) {
 	background:#ccc;
