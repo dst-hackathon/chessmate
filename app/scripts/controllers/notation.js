@@ -8,13 +8,13 @@
  * Controller of the chessmateApp
  */
 angular.module('chessmateApp')
-  .controller('NotationCtrl', function ($scope) {
+  .controller('NotationCtrl', function ($scope,$rootScope) {
     $scope.buildGame = function(notation) {
       var game = {
         "boards": [$scope.buildInitialBoard()]
       };
 
-      return game;
+      $rootScope.$broadcast('game-updated', game);
     };
 
     $scope.buildInitialBoard = function() {

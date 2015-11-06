@@ -10,7 +10,10 @@
 angular.module('chessmateApp')
   .controller('MainCtrl', function ($scope) {
 
-    $scope.currentBoard = mockBoard();
+    $scope.$on('game-updated', function (event, game) {
+      console.log(game);
+      $scope.currentBoard = game.boards[0];
+    });
 
     function mockBoard(){
       return {
