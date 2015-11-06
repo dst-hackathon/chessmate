@@ -39,9 +39,6 @@ angular.module('chessmateApp')
       var sourcePosition = $("#" + source).position();
       var destinationClass = buildCss(desinationPosition.left - sourcePosition.left, desinationPosition.top - sourcePosition.top);
       piece.css(destinationClass);
-
-      // TODO fire this event when move complete
-      //$rootScope.$broadcast('next', null);
     };
 
     function buildCss(positionX, positionY) {
@@ -53,4 +50,10 @@ angular.module('chessmateApp')
         "transform": transform};
       return cssStyle;
     }
+
+    $("body").bind('transitionend', function(e){
+      // TODO fire this event when move complete
+      $rootScope.$broadcast('next', null);
+    });
+
   });
