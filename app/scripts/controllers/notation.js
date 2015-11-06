@@ -59,7 +59,7 @@ angular.module('chessmateApp')
       };
 
       return board;
-    }
+    };
 
     $scope.buildBoard = function(currentBoard, move) {
       var board = currentBoard;
@@ -73,7 +73,18 @@ angular.module('chessmateApp')
         color: color
       };
 
+      piece.value = buildValue(piece);
+
       return piece;
+    };
+
+    var buildValue = function (piece) {
+      var map = Immutable.Map({
+        "rookwhite": "&#9823;",
+        "rookblack": "&#9820;"
+      });
+      var key = piece.type + piece.color;
+      return map.get(key);
     };
 
     $scope.getType = function(char) {
