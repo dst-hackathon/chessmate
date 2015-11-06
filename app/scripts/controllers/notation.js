@@ -149,7 +149,7 @@ angular.module('chessmateApp')
             return type;
         }
 
-
-
+        $scope.notationString = "[White AMA][Black 500miles] [Tournament Thai Chess League][Date -1-0] [Result 1/2-1/2]"+
+            "1.BF3-F4 BC6-C5 2.NG1-F3 BD6-D5 3.BE3-E4 NB8-C6 4.ME1-F2 MD8-C7 5.MF2-E3 MC7-D6 6.CC1-C2 CF8-F7 7.NB1-D2 NG8-E7 8.BH3-H4 BH6-H5 9.CF1-F2 BA6-A5 10.KD1-E2 CC8-C7";
 
     });
