@@ -92,7 +92,7 @@ angular.module('chessmateApp')
     };
     $scope.buildBoard = function (currentBoard, move, color) {
       var board = angular.copy(currentBoard);
-      var char = move.substring(0, 1);
+      var char = (move.indexOf("=") == -1) ? move.substring(0, 1) : "M";
       var source = move.substring(1, 3);
       var destination = move.substring(4, 6);
 
