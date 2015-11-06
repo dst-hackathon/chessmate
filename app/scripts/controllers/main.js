@@ -10,10 +10,10 @@
 angular.module('chessmateApp')
   .controller('MainCtrl', function ($scope) {
 
-    var game = null;
+    $scope.game = null;
     $scope.$on('game-updated', function (event, game) {
       console.log(game);
-      this.game = game;
+      $scope.game = game;
       $scope.currentBoard = game.boards[0];
     });
 
