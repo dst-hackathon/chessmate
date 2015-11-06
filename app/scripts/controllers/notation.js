@@ -11,72 +11,72 @@ angular.module('chessmateApp')
   .controller('NotationCtrl', function ($scope) {
     $scope.buildGame = function(notation) {
       var game = {
-        "boards": [this.buildInitialBoard()]
+        "boards": [$scope.buildInitialBoard()]
       };
 
       return game;
     };
 
-    buildInitialBoard = function() {
+    $scope.buildInitialBoard = function() {
       var board = {
         "turn": 0,
         "source": undefined,
         "destination": undefined,
         "position": {
-          "A1": this.buildPiece('R', "white"),
-          "B1": this.buildPiece('N', "white"),
-          "C1": this.buildPiece('B', "white"),
-          "D1": this.buildPiece('K', "white"),
-          "E1": this.buildPiece('Q', "white"),
-          "F1": this.buildPiece('B', "white"),
-          "G1": this.buildPiece('N', "white"),
-          "H1": this.buildPiece('R', "white"),
-          "A3": this.buildPiece('B', "white"),
-          "B3": this.buildPiece('B', "white"),
-          "C3": this.buildPiece('B', "white"),
-          "D3": this.buildPiece('B', "white"),
-          "E3": this.buildPiece('B', "white"),
-          "F3": this.buildPiece('B', "white"),
-          "G3": this.buildPiece('B', "white"),
-          "H3": this.buildPiece('B', "white"),
-          "A6": this.buildPiece('B', "black"),
-          "B6": this.buildPiece('B', "black"),
-          "C6": this.buildPiece('B', "black"),
-          "D6": this.buildPiece('B', "black"),
-          "E6": this.buildPiece('B', "black"),
-          "F6": this.buildPiece('B', "black"),
-          "G6": this.buildPiece('B', "black"),
-          "H6": this.buildPiece('B', "black"),
-          "A8": this.buildPiece('R', "black"),
-          "B8": this.buildPiece('N', "black"),
-          "C8": this.buildPiece('B', "black"),
-          "D8": this.buildPiece('K', "black"),
-          "E8": this.buildPiece('Q', "black"),
-          "F8": this.buildPiece('B', "black"),
-          "G8": this.buildPiece('N', "black"),
-          "H8": this.buildPiece('R', "black")
+          "A1": $scope.buildPiece('R', "white"),
+          "B1": $scope.buildPiece('N', "white"),
+          "C1": $scope.buildPiece('B', "white"),
+          "D1": $scope.buildPiece('K', "white"),
+          "E1": $scope.buildPiece('Q', "white"),
+          "F1": $scope.buildPiece('B', "white"),
+          "G1": $scope.buildPiece('N', "white"),
+          "H1": $scope.buildPiece('R', "white"),
+          "A3": $scope.buildPiece('B', "white"),
+          "B3": $scope.buildPiece('B', "white"),
+          "C3": $scope.buildPiece('B', "white"),
+          "D3": $scope.buildPiece('B', "white"),
+          "E3": $scope.buildPiece('B', "white"),
+          "F3": $scope.buildPiece('B', "white"),
+          "G3": $scope.buildPiece('B', "white"),
+          "H3": $scope.buildPiece('B', "white"),
+          "A6": $scope.buildPiece('B', "black"),
+          "B6": $scope.buildPiece('B', "black"),
+          "C6": $scope.buildPiece('B', "black"),
+          "D6": $scope.buildPiece('B', "black"),
+          "E6": $scope.buildPiece('B', "black"),
+          "F6": $scope.buildPiece('B', "black"),
+          "G6": $scope.buildPiece('B', "black"),
+          "H6": $scope.buildPiece('B', "black"),
+          "A8": $scope.buildPiece('R', "black"),
+          "B8": $scope.buildPiece('N', "black"),
+          "C8": $scope.buildPiece('B', "black"),
+          "D8": $scope.buildPiece('K', "black"),
+          "E8": $scope.buildPiece('Q', "black"),
+          "F8": $scope.buildPiece('B', "black"),
+          "G8": $scope.buildPiece('N', "black"),
+          "H8": $scope.buildPiece('R', "black")
         }
       };
 
       return board;
     }
 
-    buildBoard = function(currentBoard, move) {
+    $scope.buildBoard = function(currentBoard, move) {
       var board = currentBoard;
 
       return board;
     };
 
-    buildPiece = function(char, color) {
+    $scope.buildPiece = function(char, color) {
       var piece = {
-        type: this.getType(char),
+        type: $scope.getType(char),
         color: color
       };
 
       return piece;
     };
 
-    getType = function(char) {
+    $scope.getType = function(char) {
       var type;
 
       if (char == 'B') {
