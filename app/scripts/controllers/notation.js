@@ -14,6 +14,8 @@ angular.module('chessmateApp')
         "boards": [$scope.buildInitialBoard()]
       };
 
+      game.boards.push($scope.buildBoard(game.boards[0], "RA1-A2", "white"));
+
       $rootScope.$broadcast('game-updated', game);
     };
 
@@ -61,8 +63,17 @@ angular.module('chessmateApp')
       return board;
     }
 
-    $scope.buildBoard = function(currentBoard, move) {
-      var board = currentBoard;
+    $scope.buildBoard = function(currentBoard, move, color) {
+      var board = angular.copy(currentBoard);
+      var char = move.substring(0, 1);
+      var source = move.substring(1, 3);
+      var destination = move.substring(4, 6);
+
+      board.turn = currentBoard.turn + 1;
+      board.source = source;
+      board.destination = destination;
+      board.position[destination] = $scope.buildPiece(char, color);
+      delete board.position[source];
 
       return board;
     };
