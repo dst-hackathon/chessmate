@@ -1,7 +1,6 @@
 <table border="0">
   <tr>
     <td>
-
       <div class="board">
         <table class="index" cellpadding="0" cellspacing="0">
           <tr>
@@ -231,9 +230,7 @@
         <notation-section></notation-section>
 
       </div>
-
     </td>
-
     <td valign="top">
       <table border="0" cellpadding="0" cellspacing="0">
         <tr height="50">
@@ -265,24 +262,5 @@
         </tr>
       </table>
     </td>
-
-    <td valign="top">
-      Game Info
-      <div style="width:320px; height:500px; overflow:auto;">
-        <table border="1">
-          <tr ng-repeat="(key, value) in game.boards">
-            <td ng-if="$index != 0">
-              {{$index}}
-              Piece : {{value.position[value.destination].type}} {{value.position[value.destination].color}} | Source :
-              {{value.source}} | Desc : {{value.destination}}
-
-            </td>
-
-          </tr>
-        </table>
-      </div>
-
-    </td>
-
   </tr>
 </table>
