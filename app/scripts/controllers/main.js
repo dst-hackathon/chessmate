@@ -18,7 +18,8 @@ angular.module('chessmateApp')
     $scope.move = function(source, destination) {
       var piece = $("#" + source).children();
       var desinationPosition = $("#" + destination).position();
-      var destinationClass = buildCss(desinationPosition.left, desinationPosition.top);
+      var sourcePosition = $("#" + source).position();
+      var destinationClass = buildCss(desinationPosition.left - sourcePosition.left, desinationPosition.top - sourcePosition.top);
       piece.css(destinationClass);
     }
 
