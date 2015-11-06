@@ -58,9 +58,6 @@ angular.module('chessmateApp')
       $(piece).on("webkitTransitionEnd otransitionEnd oTransitionEnd msTransitionEnd transitionEnd",function(event) {
         $rootScope.$broadcast('animation-completed', isMoveForward);
       });
-      //$("#chess_board td").removeClass('highlight');
-      //$("#" + destination).addClass('highlight');
-      //$("#" + source).addClass('highlight');
     };
 
     function buildCss(positionX, positionY) {

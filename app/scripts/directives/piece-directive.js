@@ -3,7 +3,10 @@ angular.module('chessmateApp')
     return {
       restrict: 'EA', //E = element, A = attribute, C = class, M = comment
       templateUrl: 'app/views/piece-directive.html',
-      scope: {piece: '=value'}
+      scope: {
+        board: '=',
+        index: '='
+      }
     };
   })
   .directive('pieceRow', function () {

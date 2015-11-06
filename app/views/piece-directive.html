@@ -1,1 +1,6 @@
-<div class="piece" ng-bind-html="piece.value"></div>
+<div class="piece" ng-bind-html="board.position[index].value"
+  ng-class="{
+    'highlight destination': board.destination==index,
+    'highlight source': board.source==index
+  }"
+></div>

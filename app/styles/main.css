@@ -111,7 +111,7 @@ body {
 }
 
 
-#chess_board tr td.highlight {
+#chess_board tr td.highlight, .highlight {
   background:#963;
   background:-moz-linear-gradient(top, #963, #eee) !important;
   background:-webkit-gradient(linear,0 0, 0 100%, from(#963), to(#eee)) !important;
