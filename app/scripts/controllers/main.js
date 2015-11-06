@@ -10,9 +10,16 @@
 angular.module('chessmateApp')
   .controller('MainCtrl', function ($scope) {
 
+    $scope.game = null;
     $scope.$on('game-updated', function (event, game) {
       console.log(game);
+      $scope.game = game;
       $scope.currentBoard = game.boards[0];
+    });
+
+    $scope.$on('next', function (event) {
+      var nextBoard = $scope.currentBoard.turn + 1;
+      $scope.currentBoard = game.boards[nextBoard];
     });
 
     $scope.move = function(source, destination) {
@@ -21,7 +28,10 @@ angular.module('chessmateApp')
       var sourcePosition = $("#" + source).position();
       var destinationClass = buildCss(desinationPosition.left - sourcePosition.left, desinationPosition.top - sourcePosition.top);
       piece.css(destinationClass);
-    }
+
+      // TODO fire this event when move complete
+      //$rootScope.$broadcast('next', null);
+    };
 
     function buildCss(positionX, positionY) {
       var transform = "translate(" + positionX + "px, " + positionY + "px)";
