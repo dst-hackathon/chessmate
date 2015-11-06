@@ -76,7 +76,7 @@ angular.module('chessmateApp')
       var dotPos;
       while ((dotPos = moves.indexOf(".")) != -1) {
         //find first 6 and send with white colour
-        var whiteMove = moves.substring(dotPos + 1, moves.indexOf(' '));
+        var whiteMove = moves.substring(dotPos + 1, moves.indexOf(' ',dotPos));
         boardsArray.push($scope.buildBoard(boardsArray[boardsArray.length - 1], whiteMove, 'white'));
         //find last 6 and send with black colour
           var indexOfFirstBlack = dotPos+1+whiteMove.length+1;
