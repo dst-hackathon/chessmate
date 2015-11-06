@@ -53,8 +53,8 @@ angular.module('chessmateApp')
                     "A8": $scope.buildPiece('R', "black"),
                     "B8": $scope.buildPiece('N', "black"),
                     "C8": $scope.buildPiece('B', "black"),
-                    "D8": $scope.buildPiece('K', "black"),
-                    "E8": $scope.buildPiece('Q', "black"),
+                    "D8": $scope.buildPiece('Q', "black"),
+                    "E8": $scope.buildPiece('K', "black"),
                     "F8": $scope.buildPiece('B', "black"),
                     "G8": $scope.buildPiece('N', "black"),
                     "H8": $scope.buildPiece('R', "black")
@@ -120,15 +120,6 @@ angular.module('chessmateApp')
             return piece;
         };
 
-        var buildValue = function (piece) {
-            var map = Immutable.Map({
-                "rookwhite": "&#9823;",
-                "rookblack": "&#9820;"
-            });
-            var key = piece.type + piece.color;
-            return map.get(key);
-        };
-
         $scope.getType = function (char) {
             var type;
 
@@ -138,7 +129,7 @@ angular.module('chessmateApp')
                 type = "rook";
             } else if (char == 'N') {
                 type = "knight";
-            } else if (char == 'B') {
+            } else if (char == 'C') {
                 type = "bishop";
             } else if (char == 'K') {
                 type = "king";
