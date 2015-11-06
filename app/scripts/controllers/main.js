@@ -8,7 +8,7 @@
  * Controller of the chessmateApp
  */
 angular.module('chessmateApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('MainCtrl', function ($scope,$rootScope) {
 
     $scope.game = null;
     $scope.$on('game-updated', function (event, game) {
@@ -19,8 +19,19 @@ angular.module('chessmateApp')
 
     $scope.$on('next', function (event) {
       var nextBoard = $scope.currentBoard.turn + 1;
-      $scope.currentBoard = game.boards[nextBoard];
+      $scope.currentBoard = $scope.game.boards[nextBoard];
     });
+    $scope.$on('back', function (event) {
+      var nextBoard = $scope.currentBoard.turn - 1;
+      $scope.currentBoard = $scope.game.boards[nextBoard];
+    });
+
+    $scope.next = function(){
+      $rootScope.$broadcast('next', null);
+    };
+    $scope.back = function(){
+      $rootScope.$broadcast('back', null);
+    };
 
     $scope.move = function(source, destination) {
       var piece = $("#" + source).children();
