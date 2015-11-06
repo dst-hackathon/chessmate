@@ -20,11 +20,12 @@ angular.module('chessmateApp')
     $scope.$on('next', function (event) {
       var nextBoard = $scope.currentBoard.turn + 1;
       var currentBoard = $scope.game.boards[nextBoard];
-      move(currentBoard);
+      move(currentBoard, true);
     });
     $scope.$on('back', function (event) {
       var nextBoard = $scope.currentBoard.turn - 1;
-      $scope.currentBoard = $scope.game.boards[nextBoard];
+      var currentBoard = $scope.game.boards[nextBoard];
+      move(currentBoard, false);
     });
 
     $scope.next = function(){
@@ -34,9 +35,9 @@ angular.module('chessmateApp')
       $rootScope.$broadcast('back', null);
     };
 
-    function move(currentBoard) {
-      var source = currentBoard.source;
-      var destination = currentBoard.destination;
+    function move(currentBoard, isMoveForward) {
+      var source = isMoveForward ? currentBoard.source : currentBoard.destination;
+      var destination = isMoveForward ? currentBoard.destination : currentBoard.source;
 
       var piece = $("#" + source).children();
       var desinationPosition = $("#" + destination).position();
@@ -47,7 +48,11 @@ angular.module('chessmateApp')
       // TODO fire this event when move complete
       $(piece).on("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend",
         function(event) {
+          piece.removeAttr("style");
+          $("#" + destination).html(piece);
           $scope.currentBoard = currentBoard;
+          //$(piece).off();
+          $rootScope.$broadcast('next', null);
         });
     };
 
