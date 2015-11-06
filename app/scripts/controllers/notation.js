@@ -17,7 +17,7 @@ angular.module('chessmateApp')
 
       $scope.generateBoardFromNotation(game.boards, notation);
 
-      $rootScope.game = game;
+      $rootScope.$broadcast('game-updated', game);
     };
 
     $scope.buildInitialBoard = function() {
@@ -62,7 +62,7 @@ angular.module('chessmateApp')
       };
 
       return board;
-    }
+    };
 
       $scope.generateBoardFromNotation = function(boardsArray,notation){
 
@@ -97,10 +97,17 @@ angular.module('chessmateApp')
         var lastIndexOfBracket = notation.lastIndexOf("]");
         return  notation.substring(lastIndexOfBracket+1);
       };
+    $scope.buildBoard = function(currentBoard, move, color) {
+      var board = angular.copy(currentBoard);
+      var char = move.substring(0, 1);
+      var source = move.substring(1, 3);
+      var destination = move.substring(4, 6);
 
-
-      $scope.buildBoard = function(currentBoard, move, colour) {
-      var board = currentBoard;
+      board.turn = currentBoard.turn + 1;
+      board.source = source;
+      board.destination = destination;
+      board.position[destination] = $scope.buildPiece(char, color);
+      delete board.position[source];
 
       return board;
     };
@@ -111,7 +118,18 @@ angular.module('chessmateApp')
         color: color
       };
 
+      piece.value = buildValue(piece);
+
       return piece;
+    };
+
+    var buildValue = function (piece) {
+      var map = Immutable.Map({
+        "rookwhite": "&#9823;",
+        "rookblack": "&#9820;"
+      });
+      var key = piece.type + piece.color;
+      return map.get(key);
     };
 
     $scope.getType = function(char) {

@@ -82,7 +82,7 @@ body {
   }
 }
 
-.board a {
+.board div {
 	color:#000;
 	display:block;
 	font-size:60px;
@@ -91,6 +91,10 @@ body {
 	text-decoration:none;
 	text-shadow:0 1px #fff;
 	width:80px;
+  -webkit-transition: 1s ease-in-out;
+  -moz-transition: 1s ease-in-out;
+  -o-transition: 1s ease-in-out;
+  transition: 1s ease-in-out;
 }
 #chess_board { border:5px solid #333; }
 #chess_board td {
