@@ -1,0 +1,16 @@
+{
+  "boards": [
+    {
+      "turn" : 0,
+      "position" : {
+        "A1": {
+          "type": "king",
+          "color": "black"
+        },
+        "A2": {}
+      },
+      "source": "A3",
+      "destination": "A4"
+    }
+  ]
+}
