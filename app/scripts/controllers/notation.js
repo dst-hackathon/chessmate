@@ -81,6 +81,11 @@ angular.module('chessmateApp')
         //find last 6 and send with black colour
           var indexOfFirstBlack = dotPos+1+whiteMove.length+1;
           var indexOfSecondSpace = moves.indexOf(' ', indexOfFirstBlack);
+
+        if(indexOfSecondSpace == -1){
+          indexOfSecondSpace = moves.lastIndex;
+        }
+
         var blackMove = moves.substring(indexOfFirstBlack ,indexOfSecondSpace);
         boardsArray.push($scope.buildBoard(boardsArray[boardsArray.length - 1], blackMove, 'black'));
 
