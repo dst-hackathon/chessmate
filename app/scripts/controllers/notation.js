@@ -125,10 +125,21 @@ angular.module('chessmateApp')
 
     var buildValue = function (piece) {
       var map = Immutable.Map({
-        "rookwhite": "&#9823;",
-        "rookblack": "&#9820;"
+        "rook-black" : "&#9820;",
+        "night-black": "&#9822;",
+        "bishop-black": "&#9821;",
+        "king-black": "&#9819;",
+        "queen-black": "&#9818;",
+        "pawn-black": "&#9823;",
+
+        "rook-white" : "&#9814;",
+        "night-white": "&#9816;",
+        "bishop-white": "&#9815;",
+        "king-white": "&#9813;",
+        "queen-white": "&#9812;",
+        "pawn-white": "&#9817;"
       });
-      var key = piece.type + piece.color;
+      var key = piece.type +"-"+ piece.color;
       return map.get(key);
     };
 
