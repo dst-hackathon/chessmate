@@ -60,10 +60,4 @@ angular.module('chessmateApp')
         "transform": transform};
       return cssStyle;
     }
-
-    $("body").bind('transitionend', function(e){
-      // TODO fire this event when move complete
-      $rootScope.$broadcast('next', null);
-    });
-
   });
