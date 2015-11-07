@@ -212,6 +212,8 @@ angular.module('chessmateApp')
     $scope.getType = function (char) {
       var type;
 
+      char = char.toUpperCase();
+
       if (char == 'B') {
         type = "pawn";
       } else if (char == 'R') {
