@@ -18,7 +18,7 @@ angular.module('chessmateApp')
       renderBoard($scope.game.boards[0]);
     });
 
-    $scope.$on('animation-completed', function (event,isMoveForward,isPlay) {
+    $scope.$on('animation-completed', function (event,isMoveForward) {
       if($scope.interval){
         clearInterval($scope.interval);
       }
@@ -32,7 +32,7 @@ angular.module('chessmateApp')
 
       renderBoard(nextBoard);
 
-      if(isPlay) {
+      if($scope.isPlay) {
         setTimeout(function(){
           $rootScope.$broadcast('play', null);
         }, 1000);
@@ -40,34 +40,39 @@ angular.module('chessmateApp')
     });
 
     $scope.$on('next', function (event) {
-      move($scope.currentBoard, true, null);
+      move($scope.currentBoard, true);
     });
     $scope.$on('play', function (event) {
-      move($scope.currentBoard, true, true);
+      move($scope.currentBoard, true);
     });
     $scope.$on('back', function (event) {
-      move($scope.currentBoard, false, null);
+      move($scope.currentBoard, false);
     });
     $scope.$on('add-comment', function (event, comment) {
       $scope.currentBoard.comment = comment;
+      displayComment($scope.currentBoard);
     });
 
     $scope.next = function(){
+      $scope.isPlay = false;
       $rootScope.$broadcast('next', null);
     };
     $scope.play = function(){
+      $scope.isPlay = true;
       $rootScope.$broadcast('play', null);
     };
     $scope.back = function(){
+      $scope.isPlay = false;
       $rootScope.$broadcast('back', null);
     };
 
     $scope.changeBoard = function(board){
+      $scope.isPlay = false;
       displayComment(board);
       renderBoard(board);
     };
 
-    function move(currentBoard, isMoveForward, isPlay) {
+    function move(currentBoard, isMoveForward) {
       var source = null;
       var destination = null;
 
@@ -102,12 +107,12 @@ angular.module('chessmateApp')
       var currentTurn = currentBoard.turn;
       $scope.interval = setInterval(function(){
         if($scope.currentBoard.turn == currentTurn){
-          $rootScope.$broadcast('animation-completed', isMoveForward, isPlay);
+          $rootScope.$broadcast('animation-completed', isMoveForward);
         }
       },1500);
 
       $(piece).on("webkitTransitionEnd otransitionEnd oTransitionEnd msTransitionEnd transitionEnd",function(event) {
-        $rootScope.$broadcast('animation-completed', isMoveForward, isPlay);
+        $rootScope.$broadcast('animation-completed', isMoveForward);
       });
     };
 
@@ -122,8 +127,18 @@ angular.module('chessmateApp')
     }
 
     function displayComment(board) {
+      $('.notifications').empty();
+
       if (board.comment != undefined) {
         $("#commentBox").val(board.comment);
+
+        $('.notifications').notify({
+          message: { text: board.comment }
+        }).show();
+
+        var destPosition = $("#" + board.destination).position();
+        $('.notifications').css('top', destPosition.top + 'px');
+        $('.notifications').css('left', (destPosition.left + 80) + 'px');
       } else {
         $("#commentBox").val("");
       }
