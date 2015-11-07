@@ -133,7 +133,7 @@ angular.module('chessmateApp')
     function displayComment(board) {
       $('.notifications').empty();
 
-      if (board.comment != undefined) {
+      if (board.comment) {
         $("#commentBox").val(board.comment);
 
         $('.notifications').notify({
@@ -141,8 +141,10 @@ angular.module('chessmateApp')
         }).show();
 
         var destPosition = $("#" + board.destination).position();
-        $('.notifications').css('top', destPosition.top + 'px');
-        $('.notifications').css('left', (destPosition.left + 80) + 'px');
+        if (destPosition) {
+          $('.notifications').css('top', destPosition.top + 'px');
+          $('.notifications').css('left', (destPosition.left + 80) + 'px');
+        }
       } else {
         $("#commentBox").val("");
       }
