@@ -91,6 +91,8 @@ body {
 	text-decoration:none;
 	text-shadow:0 1px #fff;
 	width:80px;
+}
+.divTransition {
   -webkit-transition: 1s ease-in-out;
   -moz-transition: 1s ease-in-out;
   -o-transition: 1s ease-in-out;

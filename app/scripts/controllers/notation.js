@@ -9,6 +9,20 @@
  */
 angular.module('chessmateApp')
   .controller('NotationCtrl', function ($scope, $rootScope) {
+
+    $scope.upload = function () {
+      var f = document.getElementById('file').files[0];
+
+      var r = new FileReader();
+      r.onloadend = function(e){
+        var text = r.result;
+        $scope.buildGame(text);
+        //send you binary data via $http or $resource or do anything else with it
+      }
+      r.readAsText(f, 'UTF-8');
+
+    };
+
     $scope.buildGame = function (notation) {
 
       //initial game info array
