@@ -9,6 +9,7 @@
  */
 angular.module('chessmateApp')
   .controller('NotationCtrl', function ($scope, $rootScope) {
+    $scope.game;
 
     $scope.upload = function () {
       var f = document.getElementById('file').files[0];
@@ -32,6 +33,8 @@ angular.module('chessmateApp')
       };
 
       $scope.generateBoardFromNotation(game.boards, notation);
+
+      $scope.game = game;
       $rootScope.$broadcast('game-updated', game);
     };
 
@@ -93,7 +96,6 @@ angular.module('chessmateApp')
     };
 
     $scope.generateBoardFromNotation = function (boardsArray, notation) {
-
       //extract header and moves out of notation string
       var header = notation.substring(0,notation.lastIndexOf("]"));
       //do something with header
@@ -103,12 +105,11 @@ angular.module('chessmateApp')
     };
 
     $scope.generateBoardFromMoves = function(paramMoves,boardsArray) {
-
       var moves = paramMoves;
-
-      //while still have moves
       var turn = 1;
       var dotPos;
+
+      //while still have moves
       while ((dotPos = moves.indexOf(".")) != -1) {
 
         var lastIndexOfWhiteMove = moves.indexOf(' ', dotPos);
@@ -126,7 +127,6 @@ angular.module('chessmateApp')
         var whiteMove = moves.substring(dotPos + 1, lastIndexOfWhiteMove);
         var whiteBoard = $scope.buildBoard(boardsArray[boardsArray.length - 1], whiteMove, 'white');
         boardsArray.push(whiteBoard);
-
 
         var indexOfFirstBlack = dotPos+1+whiteMove.length+1;
         var indexOfSecondSpace = moves.indexOf(' ', indexOfFirstBlack);
@@ -146,12 +146,9 @@ angular.module('chessmateApp')
         $scope.buildAndPushGameInfoObject(turn, whiteMove, blackMove, whiteBoard, blackBoard);
         turn++;
       }
-
     };
 
-
     $scope.buildAndPushGameInfoObject = function(turn, whiteMove, blackMove, whiteBoard, blackBoard){
-
       var gameInfoObject = {};
       gameInfoObject.turn = turn;
       gameInfoObject.whiteMove = whiteMove;
@@ -165,6 +162,7 @@ angular.module('chessmateApp')
       var lastIndexOfBracket = notation.lastIndexOf("]");
       return notation.substring(lastIndexOfBracket + 1);
     };
+
     $scope.buildBoard = function (currentBoard, move, color) {
       var board = angular.copy(currentBoard);
       var char = (move.indexOf("=") == -1) ? move.substring(0, 1) : "A";
@@ -232,6 +230,30 @@ angular.module('chessmateApp')
       });
       var key = piece.type + "-" + piece.color;
       return map.get(key);
+    };
+
+    $scope.buildTcnString = function() {
+      var tcnString = "";
+
+      if ($scope.game) {
+        for (var board of $scope.game.boards) {
+          if (board.turn > 0) {
+            var isWhiteTurn = (board.turn % 2) == 1;
+
+            if (isWhiteTurn) {
+              tcnString += (board.turn + 1) / 2 + ".";
+            }
+
+            tcnString += board.move + " ";
+
+            if (board.comment) {
+              tcnString += "{" + board.comment + "} ";
+            }
+          }
+        }
+      }
+
+      return tcnString;
     };
 
     $scope.notationString = "[White AMA][Black 500miles] [Tournament Thai Chess League][Date -1-0] [Result 1/2-1/2]" +
