@@ -35,11 +35,11 @@
           ng-init="highlitedColor=null;">
         <td> {{info.turn}}   </td>
 
-        <td ng-class="{info: currentBoard.turn == info.whiteBoard.turn}"
+        <td ng-class="{info: currentBoard.turn == info.whiteBoard.turn}" ng-attr-id="{{'rowFocus'+((info.turn*2)-1)}}"
             ng-click="changeBoard(info.whiteBoard);">
           {{info.whiteMove}} </td>
 
-        <td ng-class="{info: currentBoard.turn == info.blackBoard.turn}"
+        <td ng-class="{info: currentBoard.turn == info.blackBoard.turn}" ng-attr-id="{{'rowFocus'+(info.turn*2)}}"
             ng-click="changeBoard(info.blackBoard);">
           {{info.blackMove}}</td>
       </tr>
