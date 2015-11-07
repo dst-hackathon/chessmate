@@ -47,7 +47,7 @@
   <div id="commentSection" ng-show="game!=null">
     <h4>Comment:</h4>
     <form novalidate class="simple-form" ng-submit="addComment(comment)">
-      <textarea id="commentBox" ng-model="comment" rows="10" cols="65"> </textarea>
+      <textarea id="commentBox" ng-model="comment" rows="10" cols="65" ng-keyup="preventSpecialKey(comment)"> </textarea>
       </br>
       <input type="submit" value="Add" />
     </form>
