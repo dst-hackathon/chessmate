@@ -7,9 +7,18 @@
   </form>
 </div>
 
-</br>
 <div id="gameNotationSection">
+  <p>Enter game notation :</p>
+  <form novalidate class="simple-form" ng-submit="buildGame(notationString)">
+    <textarea ng-model="notationString" rows="7" cols="50" required> </textarea>
+    </br>
+    <input type="submit" value="Submit" />
+  </form>
+</div>
+
+</br>
+<div id="gameNotationSection_Upload">
   <p>Upload game notation :</p>
   <input type="file" id="file" name="file"/>
-  <button ng-click="upload()">Upload</button>
+  <button ng-click="upload()">Upload</button>   <button ng-click="export()">Export</button>
 </div>
