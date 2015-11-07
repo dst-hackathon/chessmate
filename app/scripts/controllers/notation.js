@@ -8,7 +8,7 @@
  * Controller of the chessmateApp
  */
 angular.module('chessmateApp')
-  .controller('NotationCtrl', function ($scope, $rootScope) {
+  .controller('NotationCtrl', function ($scope, $rootScope,GameService) {
 
     $scope.upload = function () {
       var f = document.getElementById('file').files[0];
@@ -22,6 +22,14 @@ angular.module('chessmateApp')
       r.readAsText(f, 'UTF-8');
 
     };
+
+    $scope.save = function(notation){
+      GameService.add(notation);
+    };
+
+    $scope.$on("build-game", function (event,notation) {
+      $scope.buildGame(notation);
+    });
 
     $scope.buildGame = function (notation) {
 

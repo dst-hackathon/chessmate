@@ -15,7 +15,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'LocalStorageModule'
   ])
   .config(function ($routeProvider,$compileProvider) {
     //fix chrome app issue

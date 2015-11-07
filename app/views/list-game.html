@@ -1,0 +1,9 @@
+<div ng-controller="GameController">
+  <button class="btn btn-primary" ng-click="save()">Save</button>
+  <div class="list-group">
+    <a href="#" class="list-group-item" ng-repeat="game in games track by $index"
+      ng-click="select(game)">
+      {{$index}}
+    </a>
+  </div>
+</div>
