@@ -161,6 +161,12 @@ angular.module('chessmateApp')
       forceScreenRender();
     }
 
+    function autoFocusOnGameInfo (turnNumber){
+      var dynamicId = 'rowFocus'+turnNumber;
+      var intendedRow = $document[0].getElementById(dynamicId);
+      intendedRow.scrollIntoView(true);
+    }
+
     function forceScreenRender(){
       if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') {
         $scope.$apply();
