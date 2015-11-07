@@ -11,11 +11,11 @@ angular.module('chessmateApp')
   .controller('NotationCtrl', function ($scope, $rootScope,GameService) {
 
     $scope.export = function () {
+      var tcnString = $scope.buildTcnString();
       var anchor = $('.download');
-      anchor.attr('href', 'data:text/plain;charset=utf-8,' + JSON.stringify($scope.game.boards));
+      anchor.attr('href', 'data:text/plain;charset=utf-8,' + tcnString);
       anchor[0].click();
     };
-
 
     $scope.upload = function () {
       var f = document.getElementById('file').files[0];
