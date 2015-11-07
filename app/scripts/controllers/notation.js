@@ -113,6 +113,16 @@ angular.module('chessmateApp')
 
         var lastIndexOfWhiteMove = moves.indexOf(' ', dotPos);
 
+        //in case game ends with white
+        if(lastIndexOfWhiteMove == -1){
+
+          var whiteMove = moves.substring(dotPos + 1, dotPos+7);
+          var whiteBoard = $scope.buildBoard(boardsArray[boardsArray.length - 1], whiteMove, 'white');
+          boardsArray.push(whiteBoard);
+          $scope.buildAndPushGameInfoObject(turn, whiteMove, "", whiteBoard, null);
+          break;
+        }
+
         var whiteMove = moves.substring(dotPos + 1, lastIndexOfWhiteMove);
         var whiteBoard = $scope.buildBoard(boardsArray[boardsArray.length - 1], whiteMove, 'white');
         boardsArray.push(whiteBoard);
