@@ -8,8 +8,14 @@
  * Controller of the chessmateApp
  */
 angular.module('chessmateApp')
-  .controller('NotationCtrl', function ($scope, $rootScope) {
-    $scope.game;
+  .controller('NotationCtrl', function ($scope, $rootScope,GameService) {
+
+    $scope.export = function () {
+      var anchor = $('.download');
+      anchor.attr('href', 'data:text/plain;charset=utf-8,' + JSON.stringify($scope.game.boards));
+      anchor[0].click();
+    };
+
 
     $scope.upload = function () {
       var f = document.getElementById('file').files[0];
@@ -23,6 +29,14 @@ angular.module('chessmateApp')
       r.readAsText(f, 'UTF-8');
 
     };
+
+    $scope.save = function(notation){
+      GameService.add(notation);
+    };
+
+    $scope.$on("build-game", function (event,notation) {
+      $scope.buildGame(notation);
+    });
 
     $scope.buildGame = function (notation) {
 
@@ -214,19 +228,19 @@ angular.module('chessmateApp')
 
     var buildValue = function (piece) {
       var map = Immutable.Map({
-        "rook-black": "&#9820;",
-        "knight-black": "&#9822;",
-        "bishop-black": "&#9821;",
-        "king-black": "&#9818;",
-        "queen-black": "&#9819;",
-        "pawn-black": "&#9823;",
+        "rook-black": "<img src='piece/rook-b.png'>",
+        "knight-black": "<img src='piece/knight-b.png'>",
+        "bishop-black": "<img src='piece/bishop-b.png'>",
+        "king-black": "<img src='piece/king-b.png'>",
+        "queen-black": "<img src='piece/med-b.png'>",
+        "pawn-black": "&#9899;",
 
-        "rook-white": "&#9814;",
-        "knight-white": "&#9816;",
-        "bishop-white": "&#9815;",
-        "king-white": "&#9812;",
-        "queen-white": "&#9813;",
-        "pawn-white": "&#9817;"
+        "rook-white": "<img src='piece/rook-w.png'>",
+        "knight-white": "<img src='piece/knight-w.png'>",
+        "bishop-white": "<img src='piece/bishop-w.png'>",
+        "king-white": "<img src='piece/king-w.png'>",
+        "queen-white": "<img src='piece/med-w.png'>",
+        "pawn-white": "&#9898;"
       });
       var key = piece.type + "-" + piece.color;
       return map.get(key);

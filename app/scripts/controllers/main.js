@@ -8,7 +8,7 @@
  * Controller of the chessmateApp
  */
 angular.module('chessmateApp')
-  .controller('MainCtrl', function ($scope,$rootScope) {
+  .controller('MainCtrl', function ($scope, $rootScope) {
 
     $scope.game = null;
     $scope.$on('game-updated', function (event, game) {
@@ -18,22 +18,23 @@ angular.module('chessmateApp')
       renderBoard($scope.game.boards[0]);
     });
 
-    $scope.$on('animation-completed', function (event,isMoveForward) {
-      if($scope.interval){
+    $scope.$on('animation-completed', function (event, isMoveForward) {
+      if ($scope.interval) {
         clearInterval($scope.interval);
       }
 
       var nextBoard = null;
-      if(isMoveForward){
+      if (isMoveForward) {
         nextBoard = $scope.currentBoard.next($scope.game);
-      }else{
+      } else {
         nextBoard = $scope.currentBoard.previous($scope.game);
       }
 
+      $scope.animating = false;
       renderBoard(nextBoard);
 
-      if($scope.isPlay) {
-        setTimeout(function(){
+      if ($scope.isPlay) {
+        setTimeout(function () {
           $rootScope.$broadcast('play', null);
         }, 1000);
       }
@@ -53,39 +54,42 @@ angular.module('chessmateApp')
       displayComment($scope.currentBoard);
     });
 
-    $scope.next = function(){
+    $scope.next = function () {
       $scope.isPlay = false;
       $rootScope.$broadcast('next', null);
     };
-    $scope.play = function(){
+    $scope.play = function () {
       $scope.isPlay = !$scope.isPlay;
-      if($scope.isPlay) {
+      if ($scope.isPlay) {
         $rootScope.$broadcast('play', null);
       } else {
         renderBoard($scope.currentBoard);
       }
     };
-    $scope.back = function(){
+    $scope.back = function () {
       $scope.isPlay = false;
       $rootScope.$broadcast('back', null);
     };
 
-    $scope.changeBoard = function(board){
+    $scope.changeBoard = function (board) {
       $scope.isPlay = false;
       displayComment(board);
-      renderBoard(board);
+      renderBoard(board, "manual");
     };
 
     function move(currentBoard, isMoveForward) {
       var source = null;
       var destination = null;
 
-      if(isMoveForward){
+      $scope.animating = true;
+      renderBoard(currentBoard);
+
+      if (isMoveForward) {
         currentBoard = currentBoard.next($scope.game);
         source = currentBoard.source;
         destination = currentBoard.destination;
         displayComment(currentBoard);
-      }else{
+      } else {
         source = currentBoard.destination;
         destination = currentBoard.source;
         displayComment(currentBoard.previous($scope.game));
@@ -93,40 +97,41 @@ angular.module('chessmateApp')
 
       var desinationPosition = $("#" + destination).position();
       var sourcePosition = $("#" + source).position();
+      var destinationClass = buildCss(desinationPosition.left - sourcePosition.left, desinationPosition.top - sourcePosition.top);
 
       var piece = $("#" + source).children();
-
-      var destinationClass = buildCss(desinationPosition.left - sourcePosition.left, desinationPosition.top - sourcePosition.top);
 
       //remove highlight
       $('.piece').removeClass('highlight');
       $('.piece').removeClass('destination');
 
-      setTimeout(function(){
+      setTimeout(function () {
         // move
         $(".board div").addClass("divTransition");
         piece.css(destinationClass);
       }, 100);
 
       var currentTurn = currentBoard.turn;
-      $scope.interval = setInterval(function(){
-        if($scope.currentBoard.turn == currentTurn){
+      $scope.interval = setInterval(function () {
+        if ($scope.currentBoard.turn == currentTurn) {
           $rootScope.$broadcast('animation-completed', isMoveForward);
         }
-      },1500);
+      }, 1500);
 
-      $(piece).on("webkitTransitionEnd otransitionEnd oTransitionEnd msTransitionEnd transitionEnd",function(event) {
+      $(piece).on("webkitTransitionEnd otransitionEnd oTransitionEnd msTransitionEnd transitionEnd", function (event) {
         $rootScope.$broadcast('animation-completed', isMoveForward);
       });
     };
 
     function buildCss(positionX, positionY) {
       var transform = "translate(" + positionX + "px, " + positionY + "px)";
-      var cssStyle = { "-webkit-transform": transform,
+      var cssStyle = {
+        "-webkit-transform": transform,
         "-moz-transform": transform,
         "-o-transform": transform,
         "-ms-transform": transform,
-        "transform": transform};
+        "transform": transform
+      };
       return cssStyle;
     }
 
@@ -137,7 +142,7 @@ angular.module('chessmateApp')
         $("#commentBox").val(board.comment);
 
         $('.notifications').notify({
-          message: { text: board.comment }
+          message: {text: board.comment}
         }).show();
 
         var destPosition = $("#" + board.destination).position();
@@ -150,7 +155,7 @@ angular.module('chessmateApp')
       }
     }
 
-    function renderBoard(board) {
+    function renderBoard(board, type) {
       // unbind all rows
       $scope.game.rows = [];
       forceScreenRender();
@@ -159,9 +164,23 @@ angular.module('chessmateApp')
       $scope.currentBoard = board;
       $scope.game.rows = [8, 7, 6, 5, 4, 3, 2, 1];
       forceScreenRender();
+      autoFocusOnGameInfo(board.turn, type);
     }
 
-    function forceScreenRender(){
+    function autoFocusOnGameInfo(turnNumber, type) {
+
+      if (typeof type === "undefined") {
+        var dynamicId = 'rowFocus' + turnNumber;
+        if (dynamicId === 'rowFocus0') {
+          return;
+        } else {
+          var intendedRow = document.getElementById(dynamicId);
+          intendedRow.scrollIntoView(false);
+        }
+      }
+    }
+
+    function forceScreenRender() {
       if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') {
         $scope.$apply();
       }
