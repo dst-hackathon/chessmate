@@ -98,35 +98,41 @@ angular.module('chessmateApp')
 
     $scope.generateBoardFromNotation = function (boardsArray, notation) {
 
-            //extract header and moves out of notation string
-            var header = notation.substring(0,notation.lastIndexOf("]"));
-            //do something with header
+      //extract header and moves out of notation string
+      var header = notation.substring(0,notation.lastIndexOf("]"));
+      //do something with header
 
       var moves = $scope.getMoves(notation);
+      $scope.generateBoardFromMoves(moves,boardsArray);
+    };
+
+    $scope.generateBoardFromMoves = function(paramMoves,boardsArray) {
+
+      var moves = paramMoves;
 
       //while still have moves
       var turn = 1;
       var dotPos;
-
-
       while ((dotPos = moves.indexOf(".")) != -1) {
-        //find first 6 and send with white colour
 
+        var lastIndexOfWhiteMove = moves.indexOf(' ', dotPos);
 
-        var whiteMove = moves.substring(dotPos + 1, moves.indexOf(' ',dotPos));
+        var whiteMove = moves.substring(dotPos + 1, lastIndexOfWhiteMove);
         var whiteBoard = $scope.buildBoard(boardsArray[boardsArray.length - 1], whiteMove, 'white');
         boardsArray.push(whiteBoard);
-        //find last 6 and send with black colour
-          var indexOfFirstBlack = dotPos+1+whiteMove.length+1;
-          var indexOfSecondSpace = moves.indexOf(' ', indexOfFirstBlack);
 
+
+        var indexOfFirstBlack = dotPos+1+whiteMove.length+1;
+        var indexOfSecondSpace = moves.indexOf(' ', indexOfFirstBlack);
+
+        //case of last turn
         if(indexOfSecondSpace == -1){
           indexOfSecondSpace = moves.lastIndex;
         }
 
         var blackMove = moves.substring(indexOfFirstBlack ,indexOfSecondSpace);
         var blackBoard = $scope.buildBoard(boardsArray[boardsArray.length - 1], blackMove, 'black');
-          boardsArray.push(blackBoard);
+        boardsArray.push(blackBoard);
 
         moves = moves.substring(moves.indexOf(blackMove)+blackMove.length+1);
 
@@ -134,7 +140,9 @@ angular.module('chessmateApp')
         $scope.buildAndPushGameInfoObject(turn, whiteMove, blackMove, whiteBoard, blackBoard);
         turn++;
       }
+
     };
+
 
     $scope.buildAndPushGameInfoObject = function(turn, whiteMove, blackMove, whiteBoard, blackBoard){
 
