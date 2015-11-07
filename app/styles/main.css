@@ -166,3 +166,7 @@ tr.pointer
   font-size: 20px;
   white-space: pre;
 }
+
+.navigateTurnTable td {
+  text-align: center;
+}
