@@ -154,3 +154,16 @@ tr.pointer
 #commentSection, #gameNotationSection {
   margin-top: 10px;
 }
+
+.notifications {
+  position: absolute;
+  z-index: 9999;
+}
+
+/* Notification Element */
+.notifications > div {
+  position: relative;
+  margin: 5px 0px;
+  font-size: 20px;
+  white-space: pre;
+}
