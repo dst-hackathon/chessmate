@@ -1,14 +1,5 @@
-<div id="commentSection" ng-show="game!=null">
-  <p>Comment :</p>
-  <form novalidate class="simple-form" ng-submit="addComment(comment)">
-    <textarea id="commentBox" ng-model="comment" rows="7" cols="50"> </textarea>
-    </br>
-    <input type="submit" value="Add" />
-  </form>
-</div>
-
 <div id="gameNotationSection">
-  <p>Enter game notation :</p>
+  <p>Enter game notation:</p>
   <form novalidate class="simple-form" ng-submit="buildGame(notationString)">
     <textarea ng-model="notationString" rows="7" cols="50" required> </textarea>
     </br>
@@ -18,7 +9,7 @@
 
 </br>
 <div id="gameNotationSection_Upload">
-  <p>Upload game notation :</p>
+  <p>Upload game notation:</p>
   <input type="file" id="file" name="file"/>
   <button ng-click="upload()">Upload</button>   <button ng-click="export()">Export</button>
 </div>
