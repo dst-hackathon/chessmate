@@ -5,18 +5,16 @@
             <thead>
             <tr>
                 <th sortable-header>Turn</th>
-                <th sortable-header>Piece</th>
-                <th sortable-header>Source</th>
-                <th sortable-header>Description</th>
+                <th sortable-header>White</th>
+                <th sortable-header>Black</th>
             </tr>
             </thead>
             <tr ng-class="{info:currentBoard.turn==value.turn}"
                 class="pointer"
-                ng-repeat="(key, value) in game.boards" ng-click="changeBoard(value)">
-                <td> {{key}}   </td>
-                <td> {{value.position[value.destination].type}} </td>
-                <td> {{value.position[value.destination].color}}</td>
-                <td> {{value.destination}}</td>
+                ng-repeat="info in gameInfo">
+                <td> {{info.turn}}   </td>
+                <td ng-click="changeBoard(info.whiteBoard);"> {{info.whiteMove}} </td>
+                <td ng-click="changeBoard(info.blackBoard)"> {{info.blackMove}}</td>
             </tr>
         </table>
     </div>
