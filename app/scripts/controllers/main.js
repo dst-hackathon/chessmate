@@ -18,7 +18,7 @@ angular.module('chessmateApp')
       renderBoard($scope.game.boards[0]);
     });
 
-    $scope.$on('animation-completed', function (event,isMoveForward,isPlay) {
+    $scope.$on('animation-completed', function (event,isMoveForward) {
       if($scope.interval){
         clearInterval($scope.interval);
       }
@@ -32,7 +32,7 @@ angular.module('chessmateApp')
 
       renderBoard(nextBoard);
 
-      if(isPlay) {
+      if($scope.isPlay) {
         setTimeout(function(){
           $rootScope.$broadcast('play', null);
         }, 1000);
@@ -40,13 +40,16 @@ angular.module('chessmateApp')
     });
 
     $scope.$on('next', function (event) {
-      move($scope.currentBoard, true, null);
+      $scope.isPlay = false;
+      move($scope.currentBoard, true);
     });
     $scope.$on('play', function (event) {
-      move($scope.currentBoard, true, true);
+      $scope.isPlay = true;
+      move($scope.currentBoard, true);
     });
     $scope.$on('back', function (event) {
-      move($scope.currentBoard, false, null);
+      $scope.isPlay = false;
+      move($scope.currentBoard, false);
     });
     $scope.$on('add-comment', function (event, comment) {
       $scope.currentBoard.comment = comment;
@@ -63,11 +66,12 @@ angular.module('chessmateApp')
     };
 
     $scope.changeBoard = function(board){
+      $scope.isPlay = false;
       displayComment(board);
       renderBoard(board);
     };
 
-    function move(currentBoard, isMoveForward, isPlay) {
+    function move(currentBoard, isMoveForward) {
       var source = null;
       var destination = null;
 
@@ -102,12 +106,12 @@ angular.module('chessmateApp')
       var currentTurn = currentBoard.turn;
       $scope.interval = setInterval(function(){
         if($scope.currentBoard.turn == currentTurn){
-          $rootScope.$broadcast('animation-completed', isMoveForward, isPlay);
+          $rootScope.$broadcast('animation-completed', isMoveForward);
         }
       },1500);
 
       $(piece).on("webkitTransitionEnd otransitionEnd oTransitionEnd msTransitionEnd transitionEnd",function(event) {
-        $rootScope.$broadcast('animation-completed', isMoveForward, isPlay);
+        $rootScope.$broadcast('animation-completed', isMoveForward);
       });
     };
 
