@@ -11,12 +11,13 @@ angular.module('chessmateApp')
   .controller('NotationCtrl', function ($scope, $rootScope) {
     $scope.buildGame = function (notation) {
 
+      //initial game info array
+      $rootScope.gameInfo = [];
       var game = {
         "boards": [$scope.buildInitialBoard()]
       };
 
       $scope.generateBoardFromNotation(game.boards, notation);
-
       $rootScope.$broadcast('game-updated', game);
     };
 
@@ -90,11 +91,17 @@ angular.module('chessmateApp')
       var moves = $scope.getMoves(notation);
 
       //while still have moves
+      var turn = 1;
       var dotPos;
+
+
       while ((dotPos = moves.indexOf(".")) != -1) {
         //find first 6 and send with white colour
+
+
         var whiteMove = moves.substring(dotPos + 1, moves.indexOf(' ',dotPos));
-        boardsArray.push($scope.buildBoard(boardsArray[boardsArray.length - 1], whiteMove, 'white'));
+        var whiteBoard = $scope.buildBoard(boardsArray[boardsArray.length - 1], whiteMove, 'white');
+        boardsArray.push(whiteBoard);
         //find last 6 and send with black colour
           var indexOfFirstBlack = dotPos+1+whiteMove.length+1;
           var indexOfSecondSpace = moves.indexOf(' ', indexOfFirstBlack);
@@ -104,10 +111,26 @@ angular.module('chessmateApp')
         }
 
         var blackMove = moves.substring(indexOfFirstBlack ,indexOfSecondSpace);
-        boardsArray.push($scope.buildBoard(boardsArray[boardsArray.length - 1], blackMove, 'black'));
+        var blackBoard = $scope.buildBoard(boardsArray[boardsArray.length - 1], blackMove, 'black');
+          boardsArray.push(blackBoard);
 
         moves = moves.substring(moves.indexOf(blackMove)+blackMove.length+1);
+
+        //build game info objective
+        $scope.buildAndPushGameInfoObject(turn, whiteMove, blackMove, whiteBoard, blackBoard);
+        turn++;
       }
+    };
+
+    $scope.buildAndPushGameInfoObject = function(turn, whiteMove, blackMove, whiteBoard, blackBoard){
+
+      var gameInfoObject = {};
+      gameInfoObject.turn = turn;
+      gameInfoObject.whiteMove = whiteMove;
+      gameInfoObject.blackMove = blackMove;
+      gameInfoObject.whiteBoard = whiteBoard;
+      gameInfoObject.blackBoard = blackBoard;
+      $rootScope.gameInfo.push(gameInfoObject);
     };
 
     $scope.getMoves = function (notation) {
