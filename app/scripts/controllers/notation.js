@@ -10,6 +10,13 @@
 angular.module('chessmateApp')
   .controller('NotationCtrl', function ($scope, $rootScope) {
 
+    $scope.export = function () {
+      var anchor = $('.download');
+      anchor.attr('href', 'data:text/plain;charset=utf-8,' + JSON.stringify($scope.game.boards));
+      anchor[0].click();
+    };
+
+
     $scope.upload = function () {
       var f = document.getElementById('file').files[0];
 
@@ -151,7 +158,6 @@ angular.module('chessmateApp')
 
 
     $scope.buildAndPushGameInfoObject = function(turn, whiteMove, blackMove, whiteBoard, blackBoard){
-
       var gameInfoObject = {};
       gameInfoObject.turn = turn;
       gameInfoObject.whiteMove = whiteMove;

@@ -30,6 +30,7 @@ angular.module('chessmateApp')
         nextBoard = $scope.currentBoard.previous($scope.game);
       }
 
+      $scope.animating = false;
       renderBoard(nextBoard);
 
       if($scope.isPlay) {
@@ -80,6 +81,9 @@ angular.module('chessmateApp')
       var source = null;
       var destination = null;
 
+      $scope.animating = true;
+      renderBoard(currentBoard);
+
       if(isMoveForward){
         currentBoard = currentBoard.next($scope.game);
         source = currentBoard.source;
@@ -93,10 +97,9 @@ angular.module('chessmateApp')
 
       var desinationPosition = $("#" + destination).position();
       var sourcePosition = $("#" + source).position();
+      var destinationClass = buildCss(desinationPosition.left - sourcePosition.left, desinationPosition.top - sourcePosition.top);
 
       var piece = $("#" + source).children();
-
-      var destinationClass = buildCss(desinationPosition.left - sourcePosition.left, desinationPosition.top - sourcePosition.top);
 
       //remove highlight
       $('.piece').removeClass('highlight');
