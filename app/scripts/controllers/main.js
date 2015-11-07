@@ -159,12 +159,17 @@ angular.module('chessmateApp')
       $scope.currentBoard = board;
       $scope.game.rows = [8, 7, 6, 5, 4, 3, 2, 1];
       forceScreenRender();
+      autoFocusOnGameInfo(board.turn);
     }
 
     function autoFocusOnGameInfo (turnNumber){
       var dynamicId = 'rowFocus'+turnNumber;
-      var intendedRow = $document[0].getElementById(dynamicId);
-      intendedRow.scrollIntoView(true);
+      if(dynamicId=== 'rowFocus0'){
+        return;
+      }else{
+         var intendedRow = document.getElementById(dynamicId);
+         intendedRow.scrollIntoView(false);
+      }
     }
 
     function forceScreenRender(){
