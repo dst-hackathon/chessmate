@@ -40,15 +40,12 @@ angular.module('chessmateApp')
     });
 
     $scope.$on('next', function (event) {
-      $scope.isPlay = false;
       move($scope.currentBoard, true);
     });
     $scope.$on('play', function (event) {
-      $scope.isPlay = true;
       move($scope.currentBoard, true);
     });
     $scope.$on('back', function (event) {
-      $scope.isPlay = false;
       move($scope.currentBoard, false);
     });
     $scope.$on('add-comment', function (event, comment) {
@@ -57,12 +54,15 @@ angular.module('chessmateApp')
     });
 
     $scope.next = function(){
+      $scope.isPlay = false;
       $rootScope.$broadcast('next', null);
     };
     $scope.play = function(){
+      $scope.isPlay = true;
       $rootScope.$broadcast('play', null);
     };
     $scope.back = function(){
+      $scope.isPlay = false;
       $rootScope.$broadcast('back', null);
     };
 
