@@ -58,8 +58,12 @@ angular.module('chessmateApp')
       $rootScope.$broadcast('next', null);
     };
     $scope.play = function(){
-      $scope.isPlay = true;
-      $rootScope.$broadcast('play', null);
+      $scope.isPlay = !$scope.isPlay;
+      if($scope.isPlay) {
+        $rootScope.$broadcast('play', null);
+      } else {
+        renderBoard($scope.currentBoard);
+      }
     };
     $scope.back = function(){
       $scope.isPlay = false;
