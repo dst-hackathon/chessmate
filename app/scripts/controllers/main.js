@@ -69,6 +69,11 @@ angular.module('chessmateApp')
       var piece = $("#" + source).children();
 
       var destinationClass = buildCss(desinationPosition.left - sourcePosition.left, desinationPosition.top - sourcePosition.top);
+
+      //remove highlight
+      $('.piece').removeClass('highlight');
+
+      // move
       piece.css(destinationClass);
 
       var currentTurn = currentBoard.turn;
@@ -76,7 +81,7 @@ angular.module('chessmateApp')
         if($scope.currentBoard.turn == currentTurn){
           $rootScope.$broadcast('animation-completed', isMoveForward);
         }
-      },1500);
+      },2500);
 
       $(piece).on("webkitTransitionEnd otransitionEnd oTransitionEnd msTransitionEnd transitionEnd",function(event) {
         $rootScope.$broadcast('animation-completed', isMoveForward);
