@@ -30,6 +30,11 @@ angular.module('chessmateApp')
 
     };
 
+    $scope.preventSpecialKey = function(data) {
+      var newData = data.replace(/[{\}]/g,'');
+      $('#commentBox').val(newData);
+    }
+
     $scope.save = function(notation){
       GameService.add(notation);
     };
