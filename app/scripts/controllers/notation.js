@@ -20,6 +20,10 @@ angular.module('chessmateApp')
       $rootScope.$broadcast('game-updated', game);
     };
 
+    $scope.addComment = function(comment) {
+      $rootScope.$broadcast('add-comment', comment);
+    }
+
     $scope.buildInitialBoard = function () {
       var board = {
         "turn": 0,

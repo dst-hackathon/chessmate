@@ -39,6 +39,9 @@ angular.module('chessmateApp')
     $scope.$on('back', function (event) {
       move($scope.currentBoard, false);
     });
+    $scope.$on('add-comment', function (event, comment) {
+      $scope.currentBoard.comment = comment;
+    });
 
     $scope.next = function(){
       $rootScope.$broadcast('next', null);
@@ -48,6 +51,7 @@ angular.module('chessmateApp')
     };
 
     $scope.changeBoard = function(board){
+      displayComment(board);
       renderBoard(board);
     };
 
@@ -59,9 +63,11 @@ angular.module('chessmateApp')
         currentBoard = currentBoard.next($scope.game);
         source = currentBoard.source;
         destination = currentBoard.destination;
+        displayComment(currentBoard);
       }else{
         source = currentBoard.destination;
         destination = currentBoard.source;
+        displayComment(currentBoard.previous($scope.game));
       }
 
       var desinationPosition = $("#" + destination).position();
@@ -91,6 +97,14 @@ angular.module('chessmateApp')
         "-ms-transform": transform,
         "transform": transform};
       return cssStyle;
+    }
+
+    function displayComment(board) {
+      if (board.comment != undefined) {
+        $("#commentBox").val(board.comment);
+      } else {
+        $("#commentBox").val("");
+      }
     }
 
     function renderBoard(board) {

@@ -1,3 +1,10 @@
+<p>Comment :</p>
+<form novalidate class="simple-form" ng-submit="addComment(comment)">
+  <textarea id="commentBox" ng-model="comment" rows="7" cols="50"> </textarea>
+  </br>
+  <input type="submit" value="Add" />
+</form>
+
 <p>Enter game notation :</p>
 <form novalidate class="simple-form" ng-submit="buildGame(notationString)">
     <textarea ng-model="notationString" rows="7" cols="50" required> </textarea>
