@@ -148,3 +148,7 @@ tr.pointer
 {
   cursor: pointer
 }
+
+#commentSection, #gameNotationSection {
+  margin-top: 10px;
+}
