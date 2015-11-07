@@ -31,8 +31,7 @@
         <th sortable-header>Black</th>
       </tr>
       </thead>
-      <tr class="pointer" ng-repeat="info in gameInfo"
-          ng-init="highlitedColor=null;">
+      <tr class="pointer" ng-repeat="info in gameInfo">
         <td> {{info.turn}}   </td>
 
         <td ng-class="{info: currentBoard.turn == info.whiteBoard.turn}" ng-attr-id="{{'rowFocus'+((info.turn*2)-1)}}"
