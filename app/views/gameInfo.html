@@ -9,12 +9,18 @@
                 <th sortable-header>Black</th>
             </tr>
             </thead>
-            <tr ng-class="{info:currentBoard.turn==value.turn}"
-                class="pointer"
-                ng-repeat="info in gameInfo">
+            <tr class="pointer" ng-repeat="info in gameInfo"
+                ng-init="highlitedColor=null;">
+
                 <td> {{info.turn}}   </td>
-                <td ng-click="changeBoard(info.whiteBoard);"> {{info.whiteMove}} </td>
-                <td ng-click="changeBoard(info.blackBoard)"> {{info.blackMove}}</td>
+
+                <td ng-class="{info: currentBoard.turn == info.whiteBoard.turn}"
+                    ng-click="changeBoard(info.whiteBoard);">
+                  {{info.whiteMove}} </td>
+
+                <td ng-class="{info: currentBoard.turn == info.blackBoard.turn}"
+                    ng-click="changeBoard(info.blackBoard);">
+                  {{info.blackMove}}</td>
             </tr>
         </table>
     </div>
